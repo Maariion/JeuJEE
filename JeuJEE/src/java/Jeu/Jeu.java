@@ -27,7 +27,7 @@ public class Jeu implements API{
     }
 
     @Override
-    public String status() {
+    public String statut() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
