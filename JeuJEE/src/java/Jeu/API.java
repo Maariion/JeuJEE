@@ -10,7 +10,7 @@ package Jeu;
  * @author SERAZIN
  */
 public interface API {
-       abstract void initialisation();
+    abstract void initialisation();
     abstract boolean action(int coups, int joueur);
     abstract int derniereAction();
     abstract String status();

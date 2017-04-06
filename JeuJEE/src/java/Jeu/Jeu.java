@@ -1,29 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Jeu;
 
-/**
- *
- * @author SERAZIN
- */
 public class Jeu implements API{
-
+    private int grille[][];
+    private int 
     @Override
     public void initialisation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(int i = 0; i < this.grille.length; i++){
+            for(int j = 0; j < this.grille[i].length; i++){
+                this.grille[i][j] = 0; 
+   }
+}
+        
     }
-
+    /**
+     * 
+     * @param coups
+     * @param joueur
+     * @return boolean true: coups possible, false: coups impossible
+     */
     @Override
     public boolean action(int coups, int joueur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (coups <1 & coups >7){
+            return false;         
+        }
+        else if(grille[coups-1][5]!=0)
+        {
+            return false;
+        }
+        else{
+            Action act=new Action(joueur,coups,true);
+            return true;
+        }
     }
 
     @Override
     public int derniereAction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -40,5 +52,7 @@ public class Jeu implements API{
     public String affichage() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public doAction
  
 }
