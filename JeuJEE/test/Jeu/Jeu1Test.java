@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author SERAZIN
+ * JEU 1 : BATAILLE NAVALE 
  */
 public class Jeu1Test
 {
