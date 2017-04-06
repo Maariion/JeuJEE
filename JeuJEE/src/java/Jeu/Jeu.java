@@ -1,13 +1,15 @@
 package Jeu;
 
 public class Jeu implements API{
-    private int grille[][];
-    private int 
+    private int grille[][];//vertical puis horizontal
+    private int dernierCoups;
+    private String state;
     @Override
     public void initialisation() {
-        for(int i = 0; i < this.grille.length; i++){
-            for(int j = 0; j < this.grille[i].length; i++){
-                this.grille[i][j] = 0; 
+        state="joueur1";
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 6; i++){
+                this.grille[i][j] = 0; //i=vertical et j horizontal
    }
 }
         
@@ -19,40 +21,83 @@ public class Jeu implements API{
      * @return boolean true: coups possible, false: coups impossible
      */
     @Override
-    public boolean action(int coups, int joueur) {
+    public boolean action(int joueur, int coups) {
         if (coups <1 & coups >7){
             return false;         
         }
-        else if(grille[coups-1][5]!=0)
+        else if(grille[6][5]!=0)
         {
             return false;
         }
         else{
-            Action act=new Action(joueur,coups,true);
             return true;
         }
     }
 
     @Override
+    /**
+     * @return int dernier coups valide joué
+     */
     public int derniereAction() {
-        
+        return dernierCoups;
     }
 
     @Override
-    public String status() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String statut() {
+        return state;
     }
 
     @Override
+    /**
+     * @return int 1 si joueur un gagne, 2 si p2 et 0 si match null
+     */
     public int vainqueur() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public String affichage() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public doAction
+     //grille[][];//vertical puis horizontal
+    //envoyer i j a 0 0 lors de l'appel de la fonction
+    public boolean winner(int cpt,int joueur,int i,int j,int iX, int jY){
+        if (cpt==4)
+            return true;
+        else if(i>6 | j>5)
+            return false;
+        for (int axeY=j;axeY<7;axeY++){
+            for(int axeX=i;axeX;axeX++)
+            if (grille[i+iX][j+jY]==joueur){
+                winner(cpt+1,joueur,i+iX,j+jY,iX,jY);
+            }
+        
+    }
+        
+        if val=
+        while(grille[i][j]!=0){
+            
+        }
+            
+    }
  
+    /**
+     * 
+     * @return grille tableau d'integer a deux dimensions
+     */
+    public int[][] getGrille(){
+        return grille;
+    }
+
+    public void doAction(int joueur,int coups){
+        
+        for(int i=0; i<grille[coups-1].length;i++){
+            if(grille[coups-1][i]==0){
+                grille[coups-1][i]=joueur;
+                dernierCoups=coups;
+            }
+        }
+    }
+    
+    
 }

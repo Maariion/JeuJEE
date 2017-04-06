@@ -13,7 +13,7 @@ public interface API {
     abstract void initialisation();
     abstract boolean action(int coups, int joueur);
     abstract int derniereAction();
-    abstract String status();
+    abstract String statut();
     abstract int vainqueur();
     abstract String affichage();
 }
