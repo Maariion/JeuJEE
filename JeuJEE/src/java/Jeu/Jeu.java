@@ -48,46 +48,47 @@ public class Jeu implements API{
     }
 
     @Override
-    /**
-     * @return int 1 si joueur un gagne, 2 si p2 et 0 si match null
-     */
-    public int vainqueur() {
-        
-    }
-
-    @Override
     public String affichage() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-     //grille[][];//vertical puis horizontal
-    //envoyer i j a 0 0 lors de l'appel de la fonction
-    public boolean winner(int cpt,int joueur,int i,int j,int iX, int jY){
-        if (cpt==4)
-            return true;
-        else if(i>6 | j>5)
-            return false;
-        for (int axeY=j;axeY<7;axeY++){
-            for(int axeX=i;axeX;axeX++)
-            if (grille[i+iX][j+jY]==joueur){
-                winner(cpt+1,joueur,i+iX,j+jY,iX,jY);
+ 
+        
+    public boolean yaGagnant(int xmin, int xmax, int ymin, int ymax, int dx, int dy) {
+        for (int i = xmin; i <= xmax; i++) {
+            for (int j = ymin j <= ymax; j++) {
+                if (grille[i][j]!=0
+                        && grille[i][j] == grille[i + dx][j + dy]
+                        && grille[i][j] == grille[i + 2 * dx][j + 2 * dy]
+                        && grille[i][j] == grille[i + 3 * dx][j + 3 * dy]) {
+                    return true;
+                }
             }
-        
-    }
-        
-        if val=
-        while(grille[i][j]!=0){
-            
         }
-            
+        return false;
+ 
+    }    
+    @Override  
+    public int vainqueur() {
+        int gagnant=0;
+        if (state=="joueur1")
+            gagnant=1;
+        else gagnant=2;
+        if (yaGagnant(0, 3, 0,5, 1, 0)) { // Vérifie si 4 pions sont alignés horizontalement
+            return gagnant;
+        }
+        if (yaGagnant(0, 6, 0, 2, 0, 1)) { // Vérifie si 4 pions sont alignés verticalement
+            return gagnant;
+        }
+        if (yaGagnant(0, 3,0,2, 1, 1)) { // Vérifie si 4 pions sont alignés sur les diagonales à pente positive
+            return gagnant;
+        }
+        if (yaGagnant(0,3,0,2, 1, -1)) { // Vérifie si 4 pions sont alignés sur les diagonales à pente négative
+            return gagnant;
+        }
+        return 0;
     }
  
-    /**
-     * 
-     * @return grille tableau d'integer a deux dimensions
-     */
-    public int[][] getGrille(){
-        return grille;
-    }
+
 
     public void doAction(int joueur,int coups){
         
