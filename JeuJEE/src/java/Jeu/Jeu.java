@@ -55,7 +55,7 @@ public class Jeu implements API{
         
     public boolean yaGagnant(int xmin, int xmax, int ymin, int ymax, int dx, int dy) {
         for (int i = xmin; i <= xmax; i++) {
-            for (int j = ymin j <= ymax; j++) {
+            for (int j = ymin; j <= ymax; j++){
                 if (grille[i][j]!=0
                         && grille[i][j] == grille[i + dx][j + dy]
                         && grille[i][j] == grille[i + 2 * dx][j + 2 * dy]
@@ -68,28 +68,36 @@ public class Jeu implements API{
  
     }    
     @Override  
-    public int vainqueur() {
+    public int vainqueur() { //On ne gere pas le match nul
         int gagnant=0;
-        if (state=="joueur1")
+        if (state=="joueur1"){
             gagnant=1;
-        else gagnant=2;
+            state="joueur2";
+        }
+        else{
+            gagnant=2;
+            state="joueur1";
+        }
         if (yaGagnant(0, 3, 0,5, 1, 0)) { // Vérifie si 4 pions sont alignés horizontalement
+            state="finie";
             return gagnant;
         }
         if (yaGagnant(0, 6, 0, 2, 0, 1)) { // Vérifie si 4 pions sont alignés verticalement
+            state="finie";
             return gagnant;
         }
         if (yaGagnant(0, 3,0,2, 1, 1)) { // Vérifie si 4 pions sont alignés sur les diagonales à pente positive
+            state="finie";
             return gagnant;
         }
         if (yaGagnant(0,3,0,2, 1, -1)) { // Vérifie si 4 pions sont alignés sur les diagonales à pente négative
+            state="finie";
             return gagnant;
         }
+        
         return 0;
     }
- 
-
-
+    
     public void doAction(int joueur,int coups){
         
         for(int i=0; i<grille[coups-1].length;i++){

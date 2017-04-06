@@ -11,15 +11,16 @@ public class Main {
             if(jeuActu.statut()=="joueur1"){
                 if(jeuActu.action(1, x)){
                     jeuActu.doAction(1,x);
-                    if jeuActu.Victoire(){
-                        System.out.println("gagne");
-                    }
+                }
             }
             else{
-                
+                if(jeuActu.action(2,x))
+                    jeuActu.doAction(2,x);
             }
+            if(jeuActu.vainqueur()!=0){ 
+                System.out.println("Vainqueur:joueur "+jeuActu.vainqueur());
             }
         }
     }
-    
 }
+    
